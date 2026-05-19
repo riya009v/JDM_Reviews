@@ -1,98 +1,119 @@
-const REVIEWS = [
-    "I recently booked JDM Travels for a family trip from Ahmedabad to Udaipur, and the experience was honestly better than expected. The booking process was smooth, and their team was quick to answer all my questions before the trip. Our driver arrived right on time early in the morning, which really helped us stay on schedule.",
-    "The car was very clean, well-maintained, and comfortable for the long drive. What I appreciated most was the driver’s polite and professional behavior throughout the journey. He drove safely, knew the routes well, and even suggested a few good food stops on the way.",
-    "Pricing was also reasonable compared to other travel services I checked. Overall, the entire trip felt stress-free and comfortable. I would definitely recommend JDM Travels to anyone looking for reliable travel service with good customer support and professional drivers.",
-    "The vehicle we received was in excellent condition — very clean inside and outside, comfortable seats, good AC, and enough space for luggage. Since we were traveling with senior citizens and kids, comfort was very important for us, and JDM Travels managed it really well.",
-    "A special mention for our driver, who was extremely professional and patient throughout the journey. He was always on time, drove safely on highways as well as city roads, and maintained a very calm and respectful attitude during the entire trip. He also guided us with local sightseeing suggestions and good restaurants, which made our journey even more enjoyable.",
-    "What impressed me the most was their punctuality and customer support. Even during the trip, their team checked in once to make sure everything was going smoothly. That level of service is rare these days. The pricing was fair considering the quality of service they provided.",
-    "Overall, JDM Travels made our vacation stress-free, comfortable, and memorable. I would definitely choose them again for future trips and highly recommend them to anyone looking for reliable travel services.",
-    "I booked JDM Travels last month for an outstation business trip from Ahmedabad to Mumbai, and the experience turned out to be excellent from start to finish. I usually travel quite often for work, so punctuality, comfort, and professionalism matter a lot to me. Thankfully, JDM Travels delivered on all three. The booking process was very easy, and their support team was helpful in suggesting the right vehicle according to my travel schedule and luggage requirements. They shared all trip details in advance, including driver information and pickup timing, which made everything very organized. The driver arrived almost 15 minutes before the scheduled pickup time, which I really appreciated because I had an important meeting to attend. The car was spotless, smelled fresh, and was clearly well-maintained. During the entire journey, the driver remained polite, focused, and professional. He drove smoothly without unnecessary speeding and made sure the trip was comfortable. One thing I genuinely liked was how stress-free the whole experience felt. There were no last-minute issues, no confusion about routes, and no hidden charges at the end of the trip. Even the pricing was quite reasonable compared to other travel companies I’ve used before. Overall, JDM Travels gave me a very reliable and comfortable travel experience. It’s rare to find travel services that are both professional and customer-friendly these days. I’ll definitely use their services again and would happily recommend them to friends, family, and colleagues.",
-    "I had an excellent experience with JDM Travels from start to finish. The booking process was smooth, the staff was professional and polite, and everything was handled perfectly. The vehicle was clean and comfortable, and the driver arrived right on time. Their attention to customer satisfaction really stood out throughout the trip. I would definitely recommend JDM Travels to anyone looking for reliable and stress-free travel services.",
-    "JDM Travels provided one of the best travel experiences I’ve had in a long time. The team was extremely supportive and professional, making the entire booking process easy and hassle-free. The trip was comfortable, punctual, and very well organized. I truly appreciated how attentive they were to customer needs. Highly recommended for anyone looking for dependable and quality travel services.",
-    "I recently booked a trip with JDM Travels and was genuinely impressed by their professionalism. The staff communicated clearly, the booking was quick, and the service exceeded my expectations. The ride was smooth and comfortable, and everything happened exactly on schedule. Their commitment to customer satisfaction is obvious. I’ll definitely choose JDM Travels again for future trips.",
-    "Amazing service from JDM Travels! The staff was courteous, helpful, and very professional throughout the journey. Booking was simple, and they made sure every detail was taken care of. The vehicle was neat and comfortable, and the timing was perfect. I’m very satisfied with the overall experience and would happily recommend JDM Travels to friends and family.",
-    "JDM Travels truly delivers outstanding travel service. The entire process, from booking to drop-off, was smooth and stress-free. The staff was responsive and professional, and the vehicle was very comfortable. They maintained excellent punctuality, which made the journey even more convenient. Great customer service and attention to detail. I had a wonderful experience.",
-    "I’m extremely happy with the service provided by JDM Travels. Their team was professional, friendly, and always ready to help. The booking process was simple and efficient, while the journey itself was comfortable and enjoyable. Everything was on time, and they clearly value customer satisfaction. I would definitely recommend their services to anyone planning a trip.",
-    "Excellent travel experience with JDM Travels. The staff handled everything professionally and ensured the trip was comfortable from beginning to end. Booking was quick and easy, and the vehicle arrived exactly on time. I appreciate their commitment to punctuality and customer care. Overall, a very reliable and trustworthy travel company.",
-    "JDM Travels exceeded my expectations with their exceptional service. The booking process was smooth, the staff was polite and professional, and the entire journey was comfortable and stress-free. The driver arrived on time, and everything was managed perfectly. It’s refreshing to find a travel company that genuinely focuses on customer satisfaction.",
-    "Very satisfied with my experience at JDM Travels. Their customer service was excellent, and the staff made the booking process incredibly simple. The trip was comfortable, well managed, and punctual. I appreciated the professionalism and friendly attitude of the entire team. I highly recommend JDM Travels for reliable and quality travel services.",
-    "JDM Travels offers fantastic service with a strong focus on professionalism and customer satisfaction. Booking was smooth, communication was clear, and the ride was comfortable throughout. The punctuality and organized approach really impressed me. I’ll definitely use their services again in the future and recommend them to others.",
-    "I had a great experience traveling with JDM Travels. The team was very professional and responsive, ensuring a smooth booking process and timely updates. The journey was comfortable, and the vehicle was clean and well maintained. Everything was perfectly punctual, and their customer support made the experience even better.",
-    "Highly impressed by the service quality at JDM Travels. The booking process was quick and easy, and the staff was very professional and supportive. The vehicle was comfortable, the driver was punctual, and the overall trip went smoothly. Their dedication to customer satisfaction really makes them stand out.",
-    "JDM Travels made my trip completely stress-free. From the smooth booking experience to the punctual pickup, everything was handled professionally. The staff was polite, and the vehicle was comfortable for the entire journey. I truly appreciate their excellent customer service and would happily book with them again.",
-    "Wonderful experience with JDM Travels. Their staff was attentive, professional, and very easy to communicate with. The booking process was simple, and the trip was comfortable and perfectly on time. They clearly care about providing the best customer experience possible. Highly recommended.",
-    "JDM Travels provides reliable and professional travel services. The booking was straightforward, and the staff kept everything organized from start to finish. The journey was smooth, comfortable, and punctual. I’m extremely satisfied with the experience and would recommend them without hesitation.",
-    "I had an amazing journey with JDM Travels. The staff was very cooperative and professional, making the booking process effortless. The vehicle was clean and comfortable, and the timing was excellent. Their focus on customer satisfaction really impressed me. Looking forward to booking again soon.",
-    "Excellent customer service and travel management by JDM Travels. Everything from booking to arrival was handled with professionalism. The ride was comfortable, the driver was punctual, and the overall experience was stress-free. A trustworthy travel company that genuinely values its customers.",
-    "JDM Travels made traveling easy and enjoyable. Their professional staff ensured a smooth booking experience, and the journey itself was comfortable and timely. I appreciated their attention to detail and commitment to customer satisfaction. Definitely one of the best travel services I’ve used.",
-    "Great experience with JDM Travels. The team was very professional and organized, and the booking process was hassle-free. The vehicle arrived on time, and the entire trip was smooth and comfortable. Their dedication to customer satisfaction is truly commendable.",
-    "I’m very happy with the service provided by JDM Travels. The staff was professional, friendly, and responsive throughout the process. Booking was quick, the journey was comfortable, and the timing was perfect. I would definitely recommend their services to anyone looking for reliable travel.",
-    "JDM Travels offers excellent travel arrangements with professional customer support. The booking process was easy, and the journey was comfortable from start to finish. Their punctuality and attention to customer satisfaction made the experience even better. Highly recommended.",
-    "Fantastic service by JDM Travels. The staff was polite and professional, and they made the booking process smooth and convenient. The trip was comfortable, well organized, and perfectly on schedule. I’m completely satisfied with their service quality.",
-    "My experience with JDM Travels was excellent. The entire team was helpful and professional, ensuring a smooth booking process and a comfortable trip. Everything was punctual and well managed. I appreciate their dedication to customer care and reliable service.",
-    "I recently traveled with JDM Travels and had a wonderful experience. The booking process was simple, the staff was courteous, and the journey was smooth and comfortable. Their punctuality and professionalism made the trip stress-free and enjoyable.",
-    "JDM Travels provided exceptional travel service. The team was professional and attentive, the booking process was easy, and the trip itself was very comfortable. Everything was on time, and they clearly prioritize customer satisfaction. I would gladly use their services again.",
-    "Very reliable and professional service from JDM Travels. The booking process was quick and efficient, and the staff ensured everything went smoothly. The journey was comfortable, punctual, and enjoyable. I highly recommend them for hassle-free travel.",
-    "I had a pleasant experience with JDM Travels. Their staff was professional and supportive, making the booking process seamless. The vehicle was clean and comfortable, and the service was punctual throughout. Great customer care and overall satisfaction.",
-    "JDM Travels exceeded my expectations with their organized and professional service. Booking was smooth, communication was clear, and the ride was comfortable and timely. Their focus on customer satisfaction is truly impressive.",
-    "One of the best travel services I’ve experienced. JDM Travels handled everything professionally, from booking to completion of the trip. The journey was comfortable, punctual, and stress-free. Highly satisfied with their excellent customer service.",
-    "Excellent service by JDM Travels. The staff was friendly, professional, and always ready to help. Booking was smooth, the vehicle was comfortable, and everything was perfectly punctual. I’m extremely satisfied with the overall experience.",
-    "JDM Travels provided a smooth and enjoyable travel experience. Their professional staff handled the booking efficiently, and the trip itself was comfortable and well organized. Punctuality and customer care were excellent throughout.",
-    "I truly appreciate the excellent service from JDM Travels. The staff was professional and helpful, the booking process was simple, and the trip was comfortable and on time. Their commitment to customer satisfaction really stands out.",
-    "Great travel experience with JDM Travels. Everything was handled professionally, from booking to arrival. The journey was comfortable, the timing was perfect, and the staff was very courteous. Highly recommended.",
-    "JDM Travels delivered outstanding service during my recent trip. The booking process was hassle-free, the staff was professional, and the vehicle was very comfortable. Their punctuality and customer support made the experience even better.",
-    "I’m very impressed with JDM Travels. The team was responsive and professional, and the entire process was smooth and efficient. The ride was comfortable, timely, and stress-free. Excellent customer satisfaction.",
-    "Wonderful experience with JDM Travels. The staff was polite and professional, booking was quick and easy, and the journey was comfortable throughout. Their punctual service and attention to customer needs were highly appreciated.",
-    "JDM Travels offers top-quality travel services. The booking process was simple, the staff was supportive, and the journey was smooth and comfortable. They maintained excellent punctuality and customer satisfaction from start to finish.",
-    "I had a fantastic journey with JDM Travels. Their staff was very professional and helpful, ensuring a seamless booking experience. The trip was comfortable, well managed, and perfectly on time. Highly recommended.",
-    "Excellent professionalism and customer service by JDM Travels. Booking was easy, communication was clear, and the ride was comfortable and punctual. I’m extremely happy with the overall experience.",
-    "JDM Travels made my travel experience stress-free and enjoyable. The team was professional and responsive, the booking process was smooth, and the journey was comfortable and timely. Great customer satisfaction.",
-    "Very impressed with the service quality at JDM Travels. The staff was courteous and professional, booking was hassle-free, and the journey was comfortable and punctual. Definitely a reliable travel company.",
-    "JDM Travels provided excellent travel arrangements and outstanding customer support. The trip was smooth, comfortable, and perfectly on time. Their professionalism really sets them apart.",
-    "I had a wonderful experience traveling with JDM Travels. The staff handled everything professionally, from booking to arrival. The vehicle was comfortable, and the service was punctual and reliable.",
-    "Highly satisfied with JDM Travels. Their booking process was easy, the staff was professional, and the journey was smooth and comfortable. Great punctuality and customer care.",
-    "JDM Travels truly values customer satisfaction. The staff was helpful and professional, booking was effortless, and the ride was comfortable and timely. I would definitely travel with them again.",
-    "Amazing experience with JDM Travels. Everything was managed efficiently and professionally. The vehicle was comfortable, the driver was punctual, and the customer service was excellent.",
-    "I recently used JDM Travels and was very impressed by their professionalism. Booking was simple, the trip was comfortable, and everything happened on schedule. Excellent service overall.",
-    "JDM Travels offers reliable and comfortable travel services. The staff was polite and professional, and the booking process was very smooth. Their punctuality and customer support were exceptional.",
-    "Great service and excellent customer support from JDM Travels. The journey was smooth and comfortable, and the staff ensured everything was handled professionally. Very satisfied.",
-    "I had an excellent travel experience with JDM Travels. Their staff was professional, the booking process was seamless, and the trip was comfortable and punctual. Highly recommended.",
-    "JDM Travels provided outstanding service during my recent journey. The staff was professional and friendly, and the booking process was extremely easy. The vehicle was clean, comfortable, and arrived right on time. I really appreciated their attention to detail and customer satisfaction.",
-    "Excellent experience with JDM Travels. The team handled everything smoothly from booking to drop-off. The journey was comfortable, punctual, and stress-free. Their professionalism and dedication to customer service were impressive.",
-    "I’m very happy with the quality of service from JDM Travels. The booking process was simple, the staff was supportive, and the entire trip was comfortable and well organized. Great punctuality and customer care.",
-    "JDM Travels made my trip enjoyable and hassle-free. The team was professional, the vehicle was comfortable, and the timing was perfect. Their customer-focused approach really stood out.",
-    "Very reliable service from JDM Travels. Booking was quick and convenient, the staff was polite, and the trip was smooth and comfortable. I highly appreciate their punctuality and professionalism.",
-    "I had a great travel experience with JDM Travels. The staff was responsive and helpful, and the booking process was handled efficiently. The journey was comfortable, timely, and stress-free.",
-    "JDM Travels exceeded my expectations with their excellent service quality. The trip was comfortable, the driver was punctual, and the staff maintained professionalism throughout the process.",
-    "Highly recommended travel service. JDM Travels ensured a smooth booking experience and provided a comfortable and punctual journey. Their customer satisfaction and professionalism were excellent.",
-    "Wonderful service by JDM Travels. The team was very professional and courteous, and the booking process was seamless. The journey was comfortable and perfectly on schedule.",
-    "I truly enjoyed traveling with JDM Travels. Their professional staff handled everything efficiently, and the ride was smooth and comfortable. Excellent punctuality and customer support.",
-    "JDM Travels offers dependable and professional travel services. The booking process was easy, and the journey was comfortable and well organized. Great customer satisfaction overall.",
-    "Fantastic travel experience with JDM Travels. The staff was friendly and professional, the booking process was smooth, and the trip was comfortable and punctual.",
-    "I’m extremely satisfied with the service from JDM Travels. Everything was handled professionally, from booking to arrival. The journey was comfortable and stress-free.",
-    "JDM Travels provided excellent customer support and reliable travel arrangements. The staff was professional, the ride was comfortable, and everything was perfectly on time.",
-    "Amazing experience with JDM Travels. The booking process was quick and simple, the vehicle was comfortable, and the staff ensured excellent customer service throughout.",
-    "I had a smooth and enjoyable journey with JDM Travels. The professionalism of the staff and their punctual service really impressed me. Highly recommended.",
-    "JDM Travels made my trip very convenient and comfortable. Their staff was supportive, booking was hassle-free, and the timing was excellent. Great overall experience.",
-    "Excellent travel service from JDM Travels. The team was professional, the vehicle was clean and comfortable, and the trip was punctual and well managed.",
-    "Very professional and reliable travel company. JDM Travels ensured a smooth booking process and a comfortable journey. Their customer satisfaction is truly commendable.",
-    "I recently traveled with JDM Travels and had a fantastic experience. The staff was polite, the booking process was easy, and the journey was smooth and comfortable.",
-    "Great customer service and excellent travel arrangements by JDM Travels. Everything was organized professionally, and the journey was punctual and comfortable.",
-    "JDM Travels delivered a stress-free travel experience. The staff was professional and attentive, the booking process was seamless, and the ride was comfortable.",
-    "I’m very impressed by the professionalism of JDM Travels. Their service was punctual, the vehicle was comfortable, and the booking process was extremely smooth.",
-    "Wonderful travel experience with JDM Travels. The team handled everything professionally and ensured complete customer satisfaction throughout the journey.",
-    "JDM Travels provided excellent service with great attention to customer needs. Booking was easy, the ride was comfortable, and everything was perfectly on time.",
-    "Highly satisfied with the service quality at JDM Travels. The staff was professional and helpful, and the trip was smooth, comfortable, and punctual.",
-    "I had a very pleasant experience with JDM Travels. The booking process was straightforward, the journey was comfortable, and the staff was very professional.",
-    "JDM Travels exceeded my expectations in every way. Their punctuality, customer service, and comfortable travel arrangements made the experience outstanding.",
-    "Excellent support and professional service from JDM Travels. The booking process was hassle-free, and the trip was smooth and enjoyable.",
-    "Great experience with JDM Travels. The team was courteous and professional, the vehicle was comfortable, and the service was punctual and reliable.",
-    "JDM Travels made traveling easy and convenient. Their staff was professional, the booking process was smooth, and the journey was comfortable and timely.",
-    "I’m very happy with the excellent service from JDM Travels. The ride was comfortable, the staff was supportive, and everything was managed professionally.",
-    "Outstanding travel experience with JDM Travels. The booking process was quick, the trip was punctual, and the customer service was excellent.",
-    "JDM Travels provided top-class travel services. Their professional approach, comfortable vehicles, and punctual timing made the trip stress-free and enjoyable.",
-    "Very reliable and customer-friendly service from JDM Travels. The booking process was smooth, and the entire journey was comfortable and well organized.",
-    "Excellent professionalism and customer care by JDM Travels. The team ensured a comfortable and punctual travel experience from start to finish.",
-    "I had an enjoyable experience with JDM Travels. The booking process was easy, the staff was professional, and the trip was smooth and comfortable.",
-    "JDM Travels offers dependable and efficient travel services. Their punctuality and commitment to customer satisfaction are truly impressive."
-];
+// ===== USER PAGE SCRIPT =====
+// Reviews are loaded from reviews.js (REVIEWS array)
+
+const MAP_LINK = 'https://www.google.com/maps/place/JDM+Travels/@22.9725594,52.9807226,5z/data=!4m12!1m2!2m1!1sjdm+travels!3m8!1s0x395e9b5104e72c95:0xece6b78576b38a8!8m2!3d22.9725594!4d72.4924413!9m1!1b1!15sCgtqZG0gdHJhdmVsc5IBE2Nhcl9sZWFzaW5nX3NlcnZpY2XgAQA!16s%2Fg%2F11njmddj0d?entry=ttu&g_ep=EgoyMDI2MDUxMy4wIKXMDSoASAFQAw%3D%3D';
+const USED_KEY = 'jdm_used_reviews'; // Tracks which reviews this device has already used
+
+// ===== DOM =====
+const $ = id => document.getElementById(id);
+const userReviewText = $('user-review-text');
+const btnCopyPost = $('btn-copy-post');
+const toast = $('toast');
+const toastMsg = $('toast-message');
+
+let currentReviewIndex = -1;
+let currentReviewText = "";
+
+// ===== HELPERS =====
+function getUsedIndices() {
+    try {
+        return JSON.parse(localStorage.getItem(USED_KEY)) || [];
+    } catch (e) { return []; }
+}
+
+function markAsUsed(index) {
+    const used = getUsedIndices();
+    if (!used.includes(index)) {
+        used.push(index);
+        localStorage.setItem(USED_KEY, JSON.stringify(used));
+    }
+}
+
+function getAvailableReviews() {
+    const used = getUsedIndices();
+    return REVIEWS
+        .map((text, idx) => ({ text, idx }))
+        .filter(r => !used.includes(r.idx));
+}
+
+// ===== INIT =====
+function init() {
+    loadAndShowReview();
+    bindEvents();
+}
+
+// ===== LOAD REVIEW =====
+function loadAndShowReview() {
+    const available = getAvailableReviews();
+
+    if (available.length === 0) {
+        showEmptyError();
+        return;
+    }
+
+    // Pick a random one from available
+    const picked = available[Math.floor(Math.random() * available.length)];
+    currentReviewIndex = picked.idx;
+    currentReviewText = picked.text;
+    userReviewText.textContent = `"${currentReviewText}"`;
+    btnCopyPost.style.display = 'flex';
+}
+
+function showEmptyError() {
+    currentReviewText = "";
+    currentReviewIndex = -1;
+    btnCopyPost.style.display = 'none';
+    userReviewText.innerHTML = `
+        <div style="text-align:center; padding:10px;">
+            <div style="font-size:48px; margin-bottom:12px;">🚫</div>
+            <div style="font-size:18px; font-weight:700; color:var(--red); margin-bottom:8px;">All Reviews Used!</div>
+            <div style="font-size:14px; color:var(--text-secondary); line-height:1.6;">
+                You have used all available review templates on this device.<br>
+                Thank you for your support of <strong>JDM Travels</strong>!
+            </div>
+        </div>
+    `;
+}
+
+// ===== COPY & POST =====
+function copyAndPost() {
+    if (!currentReviewText || currentReviewIndex === -1) return;
+
+    // Mark this review as used BEFORE copy so double-click doesn't reuse
+    const indexToMark = currentReviewIndex;
+    const textToPost = currentReviewText;
+    currentReviewText = "";
+    currentReviewIndex = -1;
+
+    markAsUsed(indexToMark);
+
+    // Copy to clipboard
+    navigator.clipboard.writeText(textToPost).then(() => {
+        showToast("Copied! Opening Google Maps... 📋");
+        setTimeout(() => {
+            window.open(MAP_LINK, '_blank');
+            loadAndShowReview();
+        }, 1500);
+    }).catch(() => {
+        // Fallback: show text to copy manually
+        showToast("Please copy the review text manually.");
+        setTimeout(() => {
+            window.open(MAP_LINK, '_blank');
+            loadAndShowReview();
+        }, 2000);
+    });
+}
+
+// ===== TOAST =====
+function showToast(msg) {
+    toastMsg.textContent = msg;
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 3000);
+}
+
+// ===== EVENTS =====
+function bindEvents() {
+    btnCopyPost.addEventListener('click', copyAndPost);
+}
+
+document.addEventListener('DOMContentLoaded', init);
