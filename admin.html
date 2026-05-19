@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - ReviewHub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* ===== LOGIN SCREEN ===== */
+        .admin-login {
+            display: flex; flex-direction: column; gap: 16px;
+            align-items: center; justify-content: center;
+            min-height: 100vh; padding: 20px;
+            position: fixed; inset: 0;
+            background: var(--bg-primary); z-index: 999;
+        }
+        .admin-login.hidden { display: none; }
+        .login-box {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px; padding: 40px 36px;
+            width: 100%; max-width: 380px;
+            text-align: center;
+        }
+        .login-box h2 { font-size: 22px; margin-bottom: 6px; }
+        .login-box p { color: var(--text-secondary); font-size: 14px; margin-bottom: 24px; }
+        .login-box input {
+            width: 100%; padding: 13px 16px;
+            border-radius: 10px; border: 1px solid var(--glass-border);
+            background: rgba(0,0,0,0.3); color: #fff;
+            font-size: 15px; outline: none; text-align: center;
+            font-family: inherit; letter-spacing: 2px;
+            transition: 0.2s; margin-bottom: 12px;
+        }
+        .login-box input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-glow); }
+        .login-box .btn-primary { width: 100%; padding: 13px; font-size: 15px; border-radius: 10px; border: none; cursor: pointer; }
+        .login-error { color: var(--red); font-size: 13px; display: none; margin-top: 4px; }
+
+        /* ===== DASHBOARD ===== */
+        .admin-dashboard { display: none; max-width: 860px; margin: 0 auto; padding: 30px 20px 60px; }
+        .admin-dashboard.active { display: block; }
+        .admin-header {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-bottom: 28px; flex-wrap: wrap; gap: 12px;
+        }
+        .admin-header h1 { font-size: 26px; font-weight: 800; }
+        .admin-header p { color: var(--text-secondary); font-size: 14px; margin-top: 4px; }
+        .btn-back {
+            padding: 10px 20px; border-radius: 10px;
+            border: 1px solid var(--glass-border);
+            background: transparent; color: var(--text-primary);
+            text-decoration: none; font-size: 14px; font-weight: 600;
+            transition: 0.2s; display: inline-flex; align-items: center; gap: 6px;
+        }
+        .btn-back:hover { background: rgba(255,255,255,0.05); }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+        @media(min-width: 720px) { .dashboard-grid { grid-template-columns: 1fr 1fr; } }
+
+        .admin-card {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px; padding: 24px;
+        }
+        .admin-card h3 {
+            font-size: 16px; font-weight: 700;
+            margin-bottom: 16px; color: var(--accent-light);
+        }
+
+        .form-group { margin-bottom: 14px; }
+        .form-group label { display: block; font-size: 12px; font-weight: 600; color: var(--text-secondary); margin-bottom: 6px; }
+        .form-group textarea, .form-group input {
+            width: 100%; padding: 11px 14px;
+            background: rgba(0,0,0,0.3); border: 1px solid var(--glass-border);
+            border-radius: 10px; color: #fff;
+            font-size: 13px; outline: none; font-family: inherit; transition: 0.2s;
+        }
+        .form-group textarea { min-height: 100px; resize: vertical; }
+        .form-group textarea:focus, .form-group input:focus { border-color: var(--accent); }
+
+        .btn-green {
+            background: linear-gradient(135deg, var(--green), #00cec9);
+            color: #fff; border: none; padding: 11px 18px;
+            border-radius: 10px; font-weight: 600; font-size: 14px;
+            cursor: pointer; transition: 0.2s; font-family: inherit;
+            display: inline-flex; align-items: center; gap: 6px;
+        }
+        .btn-green:hover { filter: brightness(1.1); }
+        .btn-outline {
+            background: transparent; border: 1px solid var(--glass-border);
+            color: var(--text-secondary); padding: 11px 18px;
+            border-radius: 10px; font-weight: 600; font-size: 14px;
+            cursor: pointer; transition: 0.2s; font-family: inherit;
+        }
+        .btn-outline:hover { border-color: var(--accent); color: var(--accent-light); }
+        .btn-row { display: flex; gap: 10px; margin-top: 12px; flex-wrap: wrap; }
+
+        /* Templates list */
+        .templates-list {
+            max-height: 420px; overflow-y: auto;
+            display: flex; flex-direction: column; gap: 10px;
+            margin-top: 4px;
+        }
+        .template-item {
+            background: rgba(0,0,0,0.25); border: 1px solid var(--glass-border);
+            padding: 14px; border-radius: 10px;
+            display: flex; gap: 12px; align-items: flex-start;
+        }
+        .template-text {
+            flex: 1; font-size: 13px; color: var(--text-secondary);
+            line-height: 1.55;
+        }
+        .template-delete {
+            background: rgba(225,112,85,0.12); border: 1px solid rgba(225,112,85,0.3);
+            color: var(--red); padding: 7px 12px; border-radius: 8px;
+            font-size: 12px; font-weight: 600; cursor: pointer;
+            white-space: nowrap; transition: 0.2s; font-family: inherit;
+        }
+        .template-delete:hover { background: rgba(225,112,85,0.25); }
+
+        /* Stats bar */
+        .stats-bar {
+            display: flex; gap: 16px; margin-bottom: 20px; flex-wrap: wrap;
+        }
+        .stat-pill {
+            background: rgba(255,255,255,0.04); border: 1px solid var(--glass-border);
+            padding: 10px 18px; border-radius: 50px;
+            font-size: 13px; color: var(--text-secondary);
+            display: flex; align-items: center; gap: 6px;
+        }
+        .stat-pill strong { color: var(--text-primary); }
+
+        /* ===== MOBILE RESPONSIVENESS ===== */
+        @media (max-width: 600px) {
+            .login-box { padding: 30px 20px; }
+            .admin-dashboard { padding: 20px 15px 40px; }
+            .admin-header { margin-bottom: 20px; flex-direction: column; align-items: flex-start; }
+            .btn-back { width: 100%; justify-content: center; margin-top: 10px; }
+            .stats-bar { gap: 10px; flex-direction: column; }
+            .stat-pill { justify-content: space-between; }
+            .admin-card { padding: 20px 15px; }
+            .btn-row { flex-direction: column; }
+            .btn-green, .btn-outline { width: 100%; justify-content: center; }
+            .template-item { flex-direction: column; }
+            .template-delete { width: 100%; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="bg-orbs">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
+
+    <!-- ===== LOGIN SCREEN ===== -->
+    <div class="admin-login" id="login-screen">
+        <div class="login-box">
+            <div style="font-size:42px; margin-bottom:12px;">🔐</div>
+            <h2>Admin Access</h2>
+            <p>Enter your password to manage reviews</p>
+            <input type="password" id="admin-pass" placeholder="Enter password" autocomplete="off">
+            <button class="btn-primary" id="btn-login">🔓 Login</button>
+            <p class="login-error" id="login-error">❌ Incorrect password. Try again.</p>
+        </div>
+        <a href="index.html" style="color:var(--text-muted); text-decoration:none; font-size:13px; margin-top:10px;">← Back to User Page</a>
+    </div>
+
+    <!-- ===== ADMIN DASHBOARD ===== -->
+    <div class="admin-dashboard" id="dashboard">
+        <div class="admin-header">
+            <div>
+                <h1>🛠 Admin Dashboard</h1>
+                <p>Manage review templates and Google Maps settings</p>
+            </div>
+            <a href="index.html" class="btn-back">👁 View User Page</a>
+        </div>
+
+        <!-- Stats Bar -->
+        <div class="stats-bar">
+            <div class="stat-pill">📚 Templates: <strong id="template-count">0</strong></div>
+            <div class="stat-pill">📍 Map Link: <strong id="map-link-status">Not Set</strong></div>
+        </div>
+
+        <div class="dashboard-grid">
+
+            <!-- LEFT: Add Template + Map Link -->
+            <div style="display:flex; flex-direction:column; gap:20px;">
+
+                <!-- Add Template -->
+                <div class="admin-card">
+                    <h3>➕ Add New Review Template</h3>
+                    <div class="form-group">
+                        <label>Review Text (this will be shown to users randomly)</label>
+                        <textarea id="admin-body" placeholder="Write a 5-star review template here..."></textarea>
+                    </div>
+                    <button class="btn-primary" id="admin-add-btn" style="width:100%; border:none; border-radius:10px; padding:12px; font-size:14px; font-weight:700; cursor:pointer;">
+                        💾 Save Template
+                    </button>
+                </div>
+
+                <!-- Google Maps Link -->
+                <div class="admin-card">
+                    <h3>📍 Google Maps Location Link</h3>
+                    <div class="form-group">
+                        <label>Paste your Google Maps link below</label>
+                        <input type="url" id="admin-map-link" placeholder="https://maps.google.com/...">
+                    </div>
+                    <p style="font-size:12px; color:var(--text-muted); margin-bottom:12px;">
+                        ℹ️ Go to your Google Maps listing → Click Share → Copy link → Paste here
+                    </p>
+                    <div class="btn-row">
+                        <button class="btn-green" id="admin-save-link-btn">📍 Save Link</button>
+                        <button class="btn-outline" id="admin-test-link-btn">🔗 Test Link</button>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- RIGHT: Templates List -->
+            <div class="admin-card">
+                <h3>📚 Saved Templates (<span id="template-count-2">0</span>)</h3>
+                <p style="font-size:12px; color:var(--text-muted); margin-bottom:14px;">
+                    Each template is shown once to a user, then deleted permanently after they copy it.
+                </p>
+                <div class="templates-list" id="templates-list">
+                    <!-- Rendered by JS -->
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast">
+        <span class="toast-icon">✓</span>
+        <span class="toast-message" id="toast-message">Success!</span>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html>
